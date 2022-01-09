@@ -2,7 +2,19 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
+    <Authors>Björn Bültmann</Authors>
+    <Company>Björn Bültmann</Company>
+    <Description>This program is designed for Linux/FreeBSD-OS and deletes files and folders after a given amount of time.</Description>
+    <Copyright>Björn Bültmann © 2021</Copyright>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(OutputPath) \\192.168.178.194\FileRetention" />
+  </Target>
 
 </Project>
